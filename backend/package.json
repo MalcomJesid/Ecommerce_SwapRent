@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Es un ecommerce d intercambio de productos",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env  PORT=3000 ts-node server.ts",
+    "start": "node server.ts"
+  },
+  "author": "Malcom",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.13.8"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2"
+  }
+}
