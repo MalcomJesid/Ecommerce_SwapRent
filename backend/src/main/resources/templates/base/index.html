@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" th:replace="~{base/layout :: layout(~{}, ~{::title}, ~{::section}, ~{}, ~{})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+</head>
+<body>
+<section th:fragment="section"> <div class="slider">
+    <div class="slides">
+        <div class="slide fade">
+            <img th:src="@{/img/Banner1.png}" alt="Slide 1">
+        </div>
+        <div class="slide fade">
+            <img th:src="@{/img/Banner2.png}" alt="Slide 2">
+        </div>
+        <div class="slide fade">
+            <img th:src="@{/img/Banner3.png}" alt="Slide 3">
+        </div>
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+    <div class="grid-section">
+        <div class="grid-container">
+            <div class="grid-item">
+                <img th:src="@{/img/oferta.png}" alt="Image 1">
+                <button>OFERTA</button>
+            </div>
+            <div class="grid-item">
+                <img th:src="@{/img/gratis.png}" alt="Image 2">
+                <button>GRATIS</button>
+            </div>
+            <div class="grid-item">
+                <img th:src="@{/img/cupon.png}" alt="Image 3">
+                <button>CUPÓN</button>
+            </div>
+            <div class="grid-item">
+                <img th:src="@{/img/vestido.png}" alt="Image 4">
+                <button>MODA</button>
+            </div>
+            <div class="grid-item">
+                <img th:src="@{/img/auto.png}" alt="Image 5">
+                <button>VEHÍCULOS</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <img th:src="@{/img/bannerpromocional.png}" alt="Promotional-Banner">
+    </div>
+
+    <div class="grid-item-products">
+        <div class="grid-container-products">
+            <a href="#" class="button-link-products">
+                <div class="grid-products">
+                    <img th:src="@{/img/mesas-con6sillas.png}" alt="Image 1">
+                    <p class="product-label">PRODUCTO RENTABLE</p>
+                    <p class="product-price">$65.500<span>por día</span></p>
+                    <p class="product-name">Mesa de lujo + 6 sillas para reuniones especiales</p>
+                    <p class="free-shipping"><i class="fa-solid fa-truck-fast"></i> Envío gratis</p>
+                </div>
+            </a>
+            <a href="#" class="button-link-products">
+                <div class="grid-products">
+                    <img th:src="@{/img/mesas-con6sillas.png}" alt="Image 1">
+                    <p class="product-label">PRODUCTO RENTABLE</p>
+                    <p class="product-price">$65.500<span>por día</span></p>
+                    <p class="product-name">Mesa de lujo + 6 sillas para reuniones especiales</p>
+                    <p class="free-shipping"><i class="fa-solid fa-truck-fast"></i> Envío gratis</p>
+                </div>
+            </a>
+            <a href="#" class="button-link-products">
+                <div class="grid-products">
+                    <img th:src="@{/img/mesas-con6sillas.png}" alt="Image 1">
+                    <p class="product-label">PRODUCTO RENTABLE</p>
+                    <p class="product-price">$65.500<span>por día</span></p>
+                    <p class="product-name">Mesa de lujo + 6 sillas para reuniones especiales</p>
+                    <p class="free-shipping"><i class="fa-solid fa-truck-fast"></i> Envío gratis</p>
+                </div>
+            </a>
+            <a href="#" class="button-link-products">
+                <div class="grid-products">
+                    <img th:src="@{/img/mesas-con6sillas.png}" alt="Image 1">
+                    <p class="product-label">PRODUCTO RENTABLE</p>
+                    <p class="product-price">$65.500<span>por día</span></p>
+                    <p class="product-name">Mesa de lujo + 6 sillas para reuniones especiales</p>
+                    <p class="free-shipping"><i class="fa-solid fa-truck-fast"></i> Envío gratis</p>
+                </div>
+            </a>
+            <a href="#" class="button-link-products">
+                <div class="grid-products">
+                    <img th:src="@{/img/mesas-con6sillas.png}" alt="Image 1">
+                    <p class="product-label">PRODUCTO RENTABLE</p>
+                    <p class="product-price">$65.500<span>por día</span></p>
+                    <p class="product-name">Mesa de lujo + 6 sillas para reuniones especiales</p>
+                    <p class="free-shipping"><i class="fa-solid fa-truck-fast"></i> Envío gratis</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

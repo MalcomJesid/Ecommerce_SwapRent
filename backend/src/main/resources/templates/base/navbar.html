@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" th:replace="~{base/layout :: layout(~{}, ~{::title}, ~{::section}, ~{}, ~{})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section th:fragment="navs"> <header>
+    <div class="container">
+
+        <div class="top-bar">
+
+            <div class="logo">
+                <img th:src="@{/img/logo.png}" alt="SwapRentLogo">
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos, servicios de intercambio y más...">
+                <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <div class="right-icons">
+                <button class="button-header">Artículos más rentados</button>
+            </div>
+
+        </div>
+
+        <nav class="bottom-bar">
+            <ul>
+                <li><a th:href="@{category}">Categorías</a></li>
+                <li><a th:href="@{offer}">Ofertas</a></li>
+                <li><a th:href="@{history}">historial</a></li>
+                <li><a th:href="@{rent}">Rentar</a></li>
+                <li><a th:href="@{swap}">Intercambiar</a></li>
+            </ul>
+            <div class="user-menu">
+                <a th:href="@{account}">Cuenta</a>
+                <a th:href="@{favorite}">Favoritos</a>
+                <a href="#"><i class="fa-solid fa-bell"></i></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </nav>
+    </div>
+</header>
+</section>
+
+</body>
+</html>
