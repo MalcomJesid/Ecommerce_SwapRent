@@ -35,7 +35,7 @@ const Navbar =() => {
         <a href="#">Cuenta</a>
         <a href="#">Favoritos</a>
         <a href="#"><i className="fa-solid fa-bell"></i></a>
-        <a href="#"><i className="fa-solid fa-cart-shopping"></i></a>
+        <a href="#"><i className="fa-solid fa-comments"></i></a>
     </div>
 </nav>
 </div>

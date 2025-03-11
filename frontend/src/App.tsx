@@ -7,6 +7,7 @@ import Offer from './components/Offer'
 import Rent from './components/Rent'
 import Exchange from './components/Exchange'
 import History from './components/History'
+import Content from './components/Content'
 
 const  App =() => {
  
@@ -15,6 +16,7 @@ const  App =() => {
     <Routes >
       <Route  path ="/" element={<Layout />} />
       <Route  path ="*" element={<Error404 />} />
+      <Route  path ="content" element={<Content />} />
       <Route  path ="category" element={<Category />} />
       <Route  path ="offer" element={<Offer />} />
       <Route  path ="history" element={<History />} />
