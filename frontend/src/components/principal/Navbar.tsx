@@ -1,4 +1,4 @@
-import logo from '../assets/entity/logo.png';
+import logo from '../../assets/entity/logo.png';
 
 const Navbar =() => {
 
@@ -32,7 +32,7 @@ const Navbar =() => {
         <li><a href="exchange">Intercambiar</a></li>
     </ul>
     <div className="user-menu">
-        <a href="#">Cuenta</a>
+        <a href="login">Cuenta</a>
         <a href="#">Favoritos</a>
         <a href="#"><i className="fa-solid fa-bell"></i></a>
         <a href="#"><i className="fa-solid fa-comments"></i></a>

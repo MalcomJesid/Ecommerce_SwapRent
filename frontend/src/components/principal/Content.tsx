@@ -1,13 +1,13 @@
-import banner1 from '../assets/banners/Banner1.png';
-import banner2 from '../assets/banners/Banner2.png';
-import banner3 from '../assets/banners/Banner3.png';
-import bannerpromocional from '../assets/banners/bannerpromocional.png';
-import oferta from '../assets/product/oferta.png';
-import gratis from '../assets/product/gratis.png';
-import cupon from '../assets/product/cupon.png';
-import vestido from '../assets/product/vestido.png';
-import auto from '../assets/product/auto.png';
-import mesas from '../assets/product/mesas-con6sillas.png';
+import banner1 from '../../assets/banners/Banner1.png';
+import banner2 from '../../assets/banners/Banner2.png';
+import banner3 from '../../assets/banners/Banner3.png';
+import bannerpromocional from '../../assets/banners/bannerpromocional.png';
+import oferta from '../../assets/product/oferta.png';
+import gratis from '../../assets/product/gratis.png';
+import cupon from '../../assets/product/cupon.png';
+import vestido from '../../assets/product/vestido.png';
+import auto from '../../assets/product/auto.png';
+import mesas from '../../assets/product/mesas-con6sillas.png';
 import { useEffect, useState } from 'react';
 
 const Content = () => {
@@ -127,7 +127,7 @@ const Content = () => {
             </a>
             <a href="#" className="button-link-products">
                 <div className="grid-products">
-                    <img src="/IMAGENES/mesas-con6sillas.png" alt="Image 1" />
+                    <img src={mesas} alt="Image 1" />
                     <p className="product-label">PRODUCTO RENTABLE</p>
                     <p className="product-price">$65.500<span>por día</span></p>
                     <p className="product-name">Mesa de lujo + 6 sillas para reuniones especiales</p>
