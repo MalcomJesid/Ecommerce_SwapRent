@@ -9,7 +9,7 @@ import Exchange from './components/product/Exchange'
 import History from './components/chat/History'
 import Content from './components/principal/Content'
 import Login from './components/auth/Login'
-
+import Register from "./components/auth/Register";
 const  App =() => {
  
   return (
@@ -24,8 +24,8 @@ const  App =() => {
       <Route  path ="rent" element={<Rent />} />
       <Route  path ="exchange" element={<Exchange />} />
       <Route  path ="login" element={<Login />} />
-
-    </Routes>
+      <Route path="/register" element={<Register />} />
+  </Routes>
     </>
   )
 }
