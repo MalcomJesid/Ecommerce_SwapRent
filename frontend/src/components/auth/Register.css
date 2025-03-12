@@ -67,7 +67,9 @@
     color: white;
     padding: 5px;
 }
-
+.input-group i{
+    margin-top: 8px;
+}
 .input-group input::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }

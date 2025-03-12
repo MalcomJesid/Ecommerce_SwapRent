@@ -49,12 +49,22 @@
     position: relative;
     margin-bottom: 10px;
   }
+  .input-group svg{
+    height: 40px;
+    width: 40px;
+    color: #e7e7e7;
+    left: 12px;
+    top: 50%;
+  
+  }
   
   .icon {
     position: absolute;
     left: 10px;
     top: 10px;
     color: white;
+    left: 12px;
+    top: 50%;
   }
   
   .input-field {
@@ -70,7 +80,12 @@
   .input-field::placeholder {
     color: rgba(255, 255, 255, 0.7);
   }
-  
+  .input {
+    box-sizing: border-box;
+    color: #191919;
+    padding: 15px 15px 15px 35px;
+    width: 100%;
+  }
   /* Mensaje de error */
   .error-message {
     color: red;

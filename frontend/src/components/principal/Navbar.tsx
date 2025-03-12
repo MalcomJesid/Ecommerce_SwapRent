@@ -27,7 +27,6 @@ const Navbar =() => {
     <ul>
         <li><a href="category">Categorías</a></li>
         <li><a href="offer">Ofertas</a></li>
-        <li><a href="history">Historial</a></li>
         <li><a href="rent">Rentar</a></li>
         <li><a href="exchange">Intercambiar</a></li>
     </ul>
@@ -35,7 +34,7 @@ const Navbar =() => {
         <a href="login">Cuenta</a>
         <a href="#">Favoritos</a>
         <a href="#"><i className="fa-solid fa-bell"></i></a>
-        <a href="#"><i className="fa-solid fa-comments"></i></a>
+        <a href="history"><i className="fa-solid fa-comments"></i></a>
     </div>
 </nav>
 </div>
