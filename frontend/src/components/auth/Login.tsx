@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Lock, Mail } from "lucide-react";
 import "./Login.css";
 import logo from '../../assets/entity/logosinfondo.png';
 import { useNavigate } from "react-router-dom";
@@ -19,7 +18,7 @@ export default function Login() {
       }
     };
 
-  return (
+  return (<>
     <div className="login-container">
       <div className="login-box">
         <div className="logo-container">
@@ -86,5 +85,6 @@ export default function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }
