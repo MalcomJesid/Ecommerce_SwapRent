@@ -1,33 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Category from './components/product/Category'
+import Error404 from './components/error/Error404'
+import Layout from './components/principal/Layout'
+import { Routes,Route } from "react-router"
+import Offer from './components/product/Offer'
+import Rent from './components/product/Rent'
+import Exchange from './components/product/Exchange'
+import History from './components/chat/History'
+import Content from './components/principal/Content'
+import Login from './components/auth/Login'
+import Register from "./components/auth/Register";
+import { Modal } from 'reactstrap'
+import { Toaster } from 'sonner'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+const  App =() => {
+ 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Toaster position="top-right" richColors />
+    <Routes >
+      <Route  path ="/" element={<Layout />} />
+      <Route  path ="*" element={<Error404 />} />
+      <Route  path ="content" element={<Content />} />
+      <Route  path ="category" element={<Category />} />
+      <Route  path ="offer" element={<Offer />} />
+      <Route  path ="history" element={<History />} />
+      <Route  path ="rent" element={<Rent />} />
+      <Route  path ="exchange" element={<Exchange />} />
+      <Route  path ="login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="modal" element={<Modal />} />
+  
+  </Routes>
+
+  
     </>
   )
 }

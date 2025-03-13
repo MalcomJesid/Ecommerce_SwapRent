@@ -1,0 +1,143 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+.register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, #004d40, #263238);
+}
+
+.register-box {
+    width: 300px;
+    height: 580px;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.register-box h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #f5f5f5;
+}
+
+/* Contenedor de inputs con iconos */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto cuando el input está en foco */
+.input-group:focus-within {
+    border-color: #00e676;
+    box-shadow: 0 0 8px rgba(0, 230, 118, 0.5);
+}
+
+/* Estilos para el icono */
+.input-group .icon {
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+    margin-right: 50px;
+    transition: color 0.3s ease;
+}
+
+/* Cambia el color del icono cuando el input está activo */
+.input-group:focus-within .icon {
+    color: #00e676;
+}
+
+/* Estilos para los inputs */
+.input-group input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    background: transparent;
+    color: white;
+    padding: 5px;
+}
+.input-group i{
+    margin-top: 8px;
+}
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Estilos del botón */
+.register-button-new {
+    background-color: #00796b;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.register-button-new:hover {
+    background-color: #005a4f;
+    transform: scale(1.05);
+}
+
+/* Estilos del texto */
+.register-box p {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #bbb;
+}
+
+.login-link {
+    color: #00e676;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.google-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
