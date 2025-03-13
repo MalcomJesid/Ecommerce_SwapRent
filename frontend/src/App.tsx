@@ -12,6 +12,7 @@ import Login from './components/auth/Login'
 import Register from "./components/auth/Register";
 import { Modal } from 'reactstrap'
 import { Toaster } from 'sonner'
+import Update_user from './components/auth/Update_user'
 
 
 const  App =() => {
@@ -30,6 +31,7 @@ const  App =() => {
       <Route  path ="exchange" element={<Exchange />} />
       <Route  path ="login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="update_user" element={<Update_user />} />
       <Route path="modal" element={<Modal />} />
   
   </Routes>
