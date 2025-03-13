@@ -2,12 +2,19 @@ import { useState } from "react";
 import "./Login.css";
 import logo from '../../assets/entity/logosinfondo.png';
 import { useNavigate } from "react-router-dom";
+import ForgotPassword from "./ForgotPassword";
+
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-  
+    //const modalHook = useModal();
+
+
+    const [isOpen,setIsOpen] = useState(false)
+    //const handleModal = () => {setIsOpen(!isOpen)}
+
     const handleLogin = (e: React.FormEvent) => {
       e.preventDefault();
   
@@ -16,9 +23,14 @@ export default function Login() {
       } else {
         alert("Correo o contraseña incorrectos");
       }
+      
     };
 
+    
+
+    
   return (<>
+
     <div className="login-container">
       <div className="login-box">
         <div className="logo-container">
@@ -80,11 +92,17 @@ export default function Login() {
                 Iniciar sesión con Google
             </button>
         </div>
-        <div className="forgot-password">
-          <a href="#">¿Olvidaste tu contraseña?</a>
-        </div>
-      </div>
+
+             <div className="Olcontraseña">
+          <button onClick={() => setIsOpen(true)}>¿Olvidaste tu contraseña?</button>
+            </div>
+
+        {/* Modal de recuperación de contraseña */}
+        {isOpen && <ForgotPassword close={() => setIsOpen(false)} />}      
+            </div>
+
     </div>
-    </>
-  );
+</>  
+
+);
 }

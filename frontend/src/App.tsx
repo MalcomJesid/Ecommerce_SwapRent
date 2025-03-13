@@ -10,10 +10,15 @@ import History from './components/chat/History'
 import Content from './components/principal/Content'
 import Login from './components/auth/Login'
 import Register from "./components/auth/Register";
+import { Modal } from 'reactstrap'
+import { Toaster } from 'sonner'
+
+
 const  App =() => {
  
   return (
     <>
+    <Toaster position="top-right" richColors />
     <Routes >
       <Route  path ="/" element={<Layout />} />
       <Route  path ="*" element={<Error404 />} />
@@ -25,7 +30,11 @@ const  App =() => {
       <Route  path ="exchange" element={<Exchange />} />
       <Route  path ="login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="modal" element={<Modal />} />
+  
   </Routes>
+
+  
     </>
   )
 }

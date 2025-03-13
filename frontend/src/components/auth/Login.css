@@ -11,7 +11,7 @@
   .login-box {
     width: 250px;
     height: 470px;
-    padding: 37px 45px; 
+    padding: 48px 45px; 
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
@@ -150,4 +150,33 @@
   .register-button-login:hover {
     background-color: #00796b; /* Azul más oscuro */
   }
+
+
+  /* Contenedor del botón */
+.Olcontraseña {
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* Botón estilizado */
+.Olcontraseña button {
+  background: none;
+  color: #ffffff;
+  font-size: 12px;
+  border: 2px solid #00796b;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+/* Efecto hover */
+.Olcontraseña button:hover {
+  background: #00796b;
+  color: white;
+  transform: scale(1.05);
+}
+
+
   
