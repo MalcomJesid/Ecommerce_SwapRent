@@ -1,20 +1,17 @@
-
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #f1f1f1;
-  
 }
 
-
-
 .container {
-  max-width: 1400px;
+  /*max-width: 1400px;*/
   margin: 0 auto;
   padding: 0 20px;
-  background-color: #084B48; 
+  background-color: #084b48;
 }
 
 .top-bar {
@@ -64,7 +61,7 @@ body, html {
 }
 
 .button-header {
-  background-color: #0EB196;
+  background-color: #0eb196;
   color: white;
   padding: 13px 16px;
   border-radius: 13px;
@@ -136,7 +133,8 @@ body, html {
   display: block;
 }
 
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -186,7 +184,7 @@ body, html {
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #084B48;
+  background-color: #084b48;
   color: white;
   border-radius: 8px;
   border: none;
@@ -238,12 +236,12 @@ a {
   width: 80%;
   height: auto;
   display: block;
-  margin: 0 auto 10px; 
+  margin: 0 auto 10px;
 }
 
 .product-label {
   font-size: 12px;
-  background-color: #084B48;
+  background-color: #084b48;
   padding: 8px 8px 8px 8px;
   width: 78%;
   border-radius: 5px;
@@ -276,117 +274,115 @@ a {
 
 .free-shipping {
   font-size: 17px;
-  color: #084B48;
+  color: #084b48;
   margin: 10px 0;
   font-weight: bold;
 }
 
-
-
 @media (max-width: 1200px) {
   .container {
-      max-width: 1024px;
+    max-width: 1024px;
   }
 
   .grid-container {
-      grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 1024px) {
   .container {
-      max-width: 768px;
+    max-width: 768px;
   }
 
   .grid-container {
-      grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .grid-container-products {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .search-bar input {
-      width: 70%;
+    width: 70%;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-      max-width: 100%;
-      padding: 0 10px;
+    max-width: 100%;
+    padding: 0 10px;
   }
 
   .top-bar {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .logo img {
-      height: 80px;
+    height: 80px;
   }
 
   .search-bar {
-      width: 100%;
-      margin: 10px 0;
+    width: 100%;
+    margin: 10px 0;
   }
 
   .search-bar input {
-      width: 85%;
+    width: 85%;
   }
 
   .button-header {
-      width: 100%;
-      margin-top: 10px;
+    width: 100%;
+    margin-top: 10px;
   }
 
   .bottom-bar {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .bottom-bar ul {
-      flex-wrap: wrap;
-      justify-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .user-menu {
-      justify-content: center;
-      margin-top: 10px;
+    justify-content: center;
+    margin-top: 10px;
   }
 
   .grid-container {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .grid-container-products {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 
   .slider {
-      border-radius: 0;
+    border-radius: 0;
   }
 }
 
 @media (max-width: 480px) {
   .grid-container {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 
   .search-bar input {
-      width: 80%;
+    width: 80%;
   }
 
   .bottom-bar ul li {
-      margin: 5px;
+    margin: 5px;
   }
 
   .user-menu a {
-      margin-left: 5px;
+    margin-left: 5px;
   }
 
   .grid-item button,
   .grid-products button {
-      width: 100%;
+    width: 100%;
   }
 }
 
