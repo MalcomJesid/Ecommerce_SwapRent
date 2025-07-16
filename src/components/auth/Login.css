@@ -1,0 +1,182 @@
+/* Estilos generales del contenedor */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, #004d40, #263238);
+  }
+  
+  /* Caja del login con fondo transparente */
+  .login-box {
+    width: 250px;
+    height: 470px;
+    padding: 48px 45px; 
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-box form {
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login-box label {
+    margin-left: 10px; 
+}
+
+  
+  /* Logo */
+  .logo-container {
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    width: 130px;
+    height: 130px;
+  }
+  
+  /* Grupo de inputs */
+  .input-group {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .input-group svg{
+    height: 40px;
+    width: 40px;
+    color: #e7e7e7;
+    left: 12px;
+    top: 50%;
+  
+  }
+  
+  .icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: white;
+    left: 12px;
+    top: 50%;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+  }
+  
+  .input-field::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .input {
+    box-sizing: border-box;
+    color: #191919;
+    padding: 15px 15px 15px 35px;
+    width: 100%;
+  }
+  /* Mensaje de error */
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: -5px;
+  }
+  
+  /* Opciones de recordar y registro */
+  .options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  .options a {
+    text-decoration: underline;
+    color: white;
+  }
+  
+  /* Botón de ingresar */
+  .login-button {
+    width: 83%;
+    padding: 10px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .login-button:hover {
+    background: #00695c;
+  }
+  
+  /* Olvidaste tu contraseña */
+  .forgot-password {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .forgot-password a {
+    text-decoration: underline;
+    color: white;
+  }
+
+  .register-button-login {
+    background-color: #00796b; 
+    color: white;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 8px;
+  }
+  
+  .register-button-login:hover {
+    background-color: #00796b; /* Azul más oscuro */
+  }
+
+
+  /* Contenedor del botón */
+.Olcontraseña {
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* Botón estilizado */
+.Olcontraseña button {
+  background: none;
+  color: #ffffff;
+  font-size: 12px;
+  border: 2px solid #00796b;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+/* Efecto hover */
+.Olcontraseña button:hover {
+  background: #00796b;
+  color: white;
+  transform: scale(1.05);
+}
+
+
+  
