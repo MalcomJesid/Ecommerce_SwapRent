@@ -5,7 +5,7 @@ import Layout from "./components/principal/Layout";
 import { Routes, Route } from "react-router-dom"; // Asegúrate de importar desde 'react-router-dom'
 import Offer from "./components/product/Offer";
 import Rent from "./components/product/Rent";
-import Exchange from "./ascomponents/product/Exchange";
+import Exchange from "./components/product/Exchange";
 import History from "./components/chat/History";
 import Content from "./components/principal/Content";
 import Login from "./components/auth/Login";
