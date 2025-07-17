@@ -1,5 +1,5 @@
 // Importamos las dependencias necesarias de Firebase
-import { auth, db } from './firebase' // Autenticación y base de datos
+import { auth, db } from '../firebase/firebase'; // Autenticación y base de datos
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
@@ -8,7 +8,7 @@ import {
   browserLocalPersistence, 
   setPersistence, 
   updateProfile 
-} from 'firebase/auth' // Funciones de autenticación de Firebase
+} from 'firebase/auth'; // Funciones de autenticación de Firebase
 import { 
   doc, 
   setDoc, 
@@ -17,7 +17,7 @@ import {
   query, 
   where, 
   getDocs 
-} from 'firebase/firestore' // Funciones de Firestore
+} from 'firebase/firestore'; // Funciones de Firestore
 
 // Servicio de autenticación
 export const AuthService = {
@@ -27,7 +27,7 @@ export const AuthService = {
    * @param {string} username - Nombre de usuario a capitalizar.
    * @returns {string} Nombre de usuario capitalizado.
    */
-  capitalizeUsername(username) {
+  capitalizeUsername(username: string): string {
     if (!username || username.trim().length === 0) {
       throw new Error("El nombre de usuario no puede estar vacío.");
     }
@@ -41,9 +41,9 @@ export const AuthService = {
   /**
    * Verifica si un nombre de usuario ya está registrado en la base de datos.
    * @param {string} username - Nombre de usuario a verificar.
-   * @returns {boolean} `true` si el nombre ya está en uso, `false` en caso contrario.
+   * @returns {Promise<boolean>} `true` si el nombre ya está en uso, `false` en caso contrario.
    */
-  async isUsernameTaken(username) {
+  async isUsernameTaken(username: string): Promise<boolean> {
     try {
       const usersRef = collection(db, 'jugadores');
       const q = query(usersRef, where('nombre', '==', this.capitalizeUsername(username)));
@@ -61,9 +61,9 @@ export const AuthService = {
    * @param {string} param0.email - Correo electrónico del usuario.
    * @param {string} param0.password - Contraseña del usuario.
    * @param {Object} param0.userData - Datos adicionales del usuario.
-   * @returns {Object} Resultado del registro.
+   * @returns {Promise<Object>} Resultado del registro.
    */
-  async register({ email, password, userData }) {
+  async register({ email, password, userData }: { email: string; password: string; userData: { nombre: string; [key: string]: any } }): Promise<{ success: boolean; user?: any; error?: string; code?: string }> {
     try {
       const capitalizedName = this.capitalizeUsername(userData.nombre);
 
@@ -106,9 +106,9 @@ export const AuthService = {
    * @param {Object} param0 - Objeto con las credenciales del usuario.
    * @param {string} param0.email - Correo electrónico del usuario.
    * @param {string} param0.password - Contraseña del usuario.
-   * @returns {Object} Resultado del inicio de sesión.
+   * @returns {Promise<Object>} Resultado del inicio de sesión.
    */
-  async login({ email, password }) {
+  async login({ email, password }: { email: string; password: string }): Promise<{ success: boolean; user?: any; profile?: any; error?: string; code?: string }> {
     try {
       await setPersistence(auth, browserLocalPersistence); // Mantener la sesión en el navegador
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -125,9 +125,9 @@ export const AuthService = {
 
   /**
    * Cierra la sesión del usuario actual.
-   * @returns {Object} Resultado del cierre de sesión.
+   * @returns {Promise<Object>} Resultado del cierre de sesión.
    */
-  async logout() {
+  async logout(): Promise<{ success: boolean; error?: string; code?: string }> {
     try {
       await signOut(auth);
       return { success: true };
@@ -140,9 +140,9 @@ export const AuthService = {
    * Observa los cambios en el estado de autenticación del usuario.
    * @param {Function} callback - Función que se ejecuta cuando cambia el estado.
    */
-  onAuthStateChange(callback) {
+  onAuthStateChange(callback: (state: { user: any; profile: any; loggedIn: boolean }) => void): void {
     try {
-      return onAuthStateChanged(auth, async (user) => {
+      onAuthStateChanged(auth, async (user) => {
         if (user) {
           const userProfile = await this.getUserProfile(user.uid);
           callback({ user, profile: userProfile, loggedIn: true });
@@ -160,13 +160,12 @@ export const AuthService = {
    * Crea un perfil de usuario en Firestore.
    * @param {string} userId - ID del usuario.
    * @param {Object} userData - Datos del usuario.
-   * @returns {Object} Resultado de la operación.
+   * @returns {Promise<Object>} Resultado de la operación.
    */
-  async createUserProfile(userId, userData) {
+  async createUserProfile(userId: string, userData: { [key: string]: any }): Promise<{ success: boolean }> {
     try {
       await setDoc(doc(db, 'usuarios', userId), {
         ...userData,
-        // createdAt: new Date().toISOString() // (Opcional) Fecha de creación
       });
       return { success: true };
     } catch (error) {
@@ -177,18 +176,18 @@ export const AuthService = {
 
   /**
    * Obtiene el usuario actual autenticado.
-   * @returns {Object|null} Usuario actual o `null` si no hay sesión activa.
+   * @returns {Promise<any | null>} Usuario actual o `null` si no hay sesión activa.
    */
-  async getCurrentUser() {
+  async getCurrentUser(): Promise<any | null> {
     return auth.currentUser;
   },
 
   /**
    * Obtiene el perfil de un usuario desde Firestore.
    * @param {string} userId - ID del usuario.
-   * @returns {Object|null} Perfil del usuario o `null` si no existe.
+   * @returns {Promise<any | null>} Perfil del usuario o `null` si no existe.
    */
-  async getUserProfile(userId) {
+  async getUserProfile(userId: string): Promise<any | null> {
     try {
       const userDoc = await getDoc(doc(db, 'jugadores', userId));
       return userDoc.exists() ? userDoc.data() : null;
@@ -200,11 +199,11 @@ export const AuthService = {
 
   /**
    * Maneja los errores de autenticación y devuelve un mensaje amigable.
-   * @param {Object} error - Objeto de error de Firebase.
+   * @param {any} error - Objeto de error de Firebase.
    * @returns {Object} Objeto con el mensaje de error y el código.
    */
-  handleAuthError(error) {
-    const errorMessages = {
+  handleAuthError(error: any): { success: boolean; error: string; code: string } {
+    const errorMessages: { [key: string]: string } = {
       'auth/email-already-in-use': 'Este correo ya está registrado',
       'auth/invalid-email': 'Correo electrónico inválido',
       'auth/operation-not-allowed': 'Operación no permitida',

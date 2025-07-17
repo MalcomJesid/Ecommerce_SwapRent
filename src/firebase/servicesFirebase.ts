@@ -22,12 +22,12 @@ import { collection, addDoc } from 'firebase/firestore';
  *
  * @param {string} path - Ruta de la colección o subcolección en Firestore.
  *   - Ejemplo: `'documento'` o `'documento/{docId}/listado_maestro'`.
- * @param {Object} data - Objeto con los datos que se desean guardar en el documento.
+ * @param {Record<string, any>} data - Objeto con los datos que se desean guardar en el documento.
  *   - Ejemplo: `{ nombre: 'Ejemplo', descripcion: 'Este es un ejemplo' }`.
  * @returns {Promise<string>} - Una promesa que resuelve con el ID del documento creado.
  * @throws {Error} - Lanza un error si ocurre algún problema al guardar el documento.
  */
-export const saveDocument = async (path, data) => {
+export const saveDocument = async (path: string, data: Record<string, any>): Promise<string> => {
   try {
     console.log('Ruta de la colección:', path);
     console.log('Datos a guardar:', data);
