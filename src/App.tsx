@@ -1,28 +1,32 @@
 import "./App.css";
-import Category from "./components/product/Category";
-import Error404 from "./components/error/Error404";
+import { Routes, Route } from "react-router-dom"; // Importa las rutas desde react-router-dom
 import Layout from "./components/principal/Layout";
-import { Routes, Route } from "react-router-dom"; // Asegúrate de importar desde 'react-router-dom'
+import Content from "./components/principal/Content";
+import ProductDetail from "./components/product/ProductDetail";
+import Category from "./components/product/Category";
 import Offer from "./components/product/Offer";
 import Rent from "./components/product/Rent";
 import Exchange from "./components/product/Exchange";
 import History from "./components/chat/History";
-import Content from "./components/principal/Content";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Error404 from "./components/error/Error404";
 import { Modal } from "reactstrap";
 import { Toaster } from "sonner";
-import ProductDetail from "./components/product/ProductDetail";
 
 const App = () => {
   return (
     <>
+      {/* Notificaciones */}
       <Toaster position="top-right" richColors />
+
+      {/* Configuración de rutas */}
       <Routes>
         {/* Ruta principal que usa el Layout */}
         <Route path="/" element={<Layout />}>
           {/* Rutas anidadas */}
-          <Route path="" element={<Content />} />
+          <Route index element={<Content />} /> {/* Página principal */}
+          <Route path="product/:productId" element={<ProductDetail />} /> {/* Detalles del producto */}
           <Route path="category" element={<Category />} />
           <Route path="offer" element={<Offer />} />
           <Route path="history" element={<History />} />
@@ -31,7 +35,6 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="modal" element={<Modal />} />
-          <Route path="product/:productId" element={<ProductDetail />} /> {/* Nueva ruta */}
         </Route>
 
         {/* Ruta para error 404 */}

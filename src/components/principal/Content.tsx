@@ -8,7 +8,7 @@ import cupon from '../../assets/product/cupon.png';
 import vestido from '../../assets/product/vestido.png';
 import auto from '../../assets/product/auto.png';
 import { useEffect, useState } from 'react';
-//import saveProductsToFirestore from '../../firebase/saveProductsToFirestore'; // Importa la función
+import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate
 import { getProducts } from '../../firebase/servicesFirebase'; // Importa la función para obtener productos
 
 const Content = () => {
@@ -16,6 +16,7 @@ const Content = () => {
   const [autoSlide, setAutoSlide] = useState(true);
   const [products, setProducts] = useState<any[]>([]); // Estado para almacenar los productos
   const banners = [banner1, banner2, banner3];
+  const navigate = useNavigate(); // Hook para navegar entre rutas
 
   // Llama a saveProductsToFirestore cuando el componente se monte
    // El array vacío asegura que esto solo se ejecute una vez al montar el componente
@@ -104,20 +105,17 @@ const Content = () => {
       <div className="grid-item-products">
         <div className="grid-container-products">
           {products.map((product) => (
-            <div key={product.id} className="grid-products">
+            <div
+              key={product.id} // Usa el ID del documento generado por Firestore
+              className="grid-products"
+              onClick={() => {
+                console.log("Navegando al producto con ID:", product.id); // Depuración
+                navigate(`/product/${product.id}`); // Navega usando el ID del documento
+              }}
+              style={{ cursor: "pointer" }}
+            >
               <img src={product.image} alt={product.name} />
               <p className="product-label">PRODUCTO RENTABLE</p>
-              <p className="product-price">
-                {/* Validación para evitar errores con toLocaleString */}
-                {product.pricePerDay
-                  ? `$${product.pricePerDay.toLocaleString()}`
-                  : "Precio no disponible"}
-                <span> por día</span>
-              </p>
-              <p className="product-name">{product.name}</p>
-              <p className="free-shipping">
-                <i className="fa-solid fa-truck-fast"></i> {product.shipping || "Sin información de envío"}
-              </p>
             </div>
           ))}
         </div>
