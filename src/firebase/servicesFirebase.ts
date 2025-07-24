@@ -1,5 +1,5 @@
 import { db } from './firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 /**
  * Guarda un documento en una colección o subcolección específica de Firestore.
@@ -46,6 +46,25 @@ export const saveDocument = async (path: string, data: Record<string, any>): Pro
     console.error('Error al guardar el documento:', error);
 
     // Lanza el error para que pueda ser manejado por el llamador
+    throw error;
+  }
+};
+
+/**
+ * Obtiene todos los productos desde la colección "productos" en Firestore.
+ * @returns {Promise<Array>} - Una promesa que resuelve con un array de productos.
+ */
+export const getProducts = async (): Promise<any[]> => {
+  try {
+    const collectionRef = collection(db, 'productos'); // Referencia a la colección "productos"
+    const querySnapshot = await getDocs(collectionRef);
+    const products = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return products;
+  } catch (error) {
+    console.error('Error al obtener los productos:', error);
     throw error;
   }
 };
