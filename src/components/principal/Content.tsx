@@ -89,7 +89,7 @@ const Content = () => {
 
     <div className="grid-item-products">
         <div className="grid-container-products">
-            <a href="#" className="button-link-products">
+            <a href={`/product/1`} className="button-link-products">
                 <div className="grid-products">
                     <img src={mesas} alt="Image 1" />
                     <p className="product-label">PRODUCTO RENTABLE</p>
@@ -98,7 +98,7 @@ const Content = () => {
                     <p className="free-shipping"><i className="fa-solid fa-truck-fast"></i> Envío gratis</p>
                 </div>
             </a>
-            <a href="#" className="button-link-products">
+            <a href={`/product/1`} className="button-link-products">
                 <div className="grid-products">
                     <img src={mesas} alt="Image 1" />
                     <p className="product-label">PRODUCTO RENTABLE</p>
@@ -107,7 +107,7 @@ const Content = () => {
                     <p className="free-shipping"><i className="fa-solid fa-truck-fast"></i> Envío gratis</p>
                 </div>
             </a>
-            <a href="#" className="button-link-products">
+            <a href={`/product/1`} className="button-link-products">
                 <div className="grid-products">
                     <img src={mesas}  alt="Image 1" />
                     <p className="product-label">PRODUCTO RENTABLE</p>
@@ -116,7 +116,7 @@ const Content = () => {
                     <p className="free-shipping"><i className="fa-solid fa-truck-fast"></i> Envío gratis</p>
                 </div>
             </a>
-            <a href="#" className="button-link-products">
+            <a href={`/product/1`} className="button-link-products">
                 <div className="grid-products">
                     <img src={mesas}  alt="Image 1" />
                     <p className="product-label">PRODUCTO RENTABLE</p>
@@ -125,7 +125,7 @@ const Content = () => {
                     <p className="free-shipping"><i className="fa-solid fa-truck-fast"></i> Envío gratis</p>
                 </div>
             </a>
-            <a href="#" className="button-link-products">
+            <a href={`/product/1`} className="button-link-products">
                 <div className="grid-products">
                     <img src={mesas} alt="Image 1" />
                     <p className="product-label">PRODUCTO RENTABLE</p>

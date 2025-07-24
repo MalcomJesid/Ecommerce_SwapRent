@@ -3,23 +3,31 @@ import "./Login.css";
 import logo from "../../assets/entity/logosinfondo.png";
 import { useNavigate } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
+import { AuthService } from "../../firebase/auth"; // Importa el servicio de autenticación
+import { toast } from "sonner"; // Para mostrar notificaciones
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  //const modalHook = useModal();
-
   const [isOpen, setIsOpen] = useState(false);
-  //const handleModal = () => {setIsOpen(!isOpen)}
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (email === "prueba@swaprent.com" && password === "1234") {
-      navigate("/");
-    } else {
-      alert("Correo o contraseña incorrectos");
+    try {
+      // Llama al método login del servicio de autenticación
+      const result = await AuthService.login({ email, password });
+
+      if (result.success) {
+        toast.success("Inicio de sesión exitoso");
+        navigate("/"); // Redirige al usuario a la página principal
+      } else {
+        toast.error(result.error || "Error al iniciar sesión");
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      toast.error("Error inesperado al iniciar sesión");
     }
   };
 
@@ -45,13 +53,13 @@ export default function Login() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="size-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
                 />
               </svg>
@@ -69,13 +77,13 @@ export default function Login() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="size-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
                 />
               </svg>
@@ -87,7 +95,7 @@ export default function Login() {
               <button
                 type="button"
                 className="register-button-login"
-                onClick={() => navigate("/Register")}
+                onClick={() => navigate("/register")}
               >
                 Registrarse
               </button>
