@@ -43,7 +43,8 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="user-menu">
-            <Link to="login">Cuenta</Link>
+            <Link to="profile">Mi Cuenta</Link>
+            <Link to="login">inicio sesión</Link>
             <Link to="#">Favoritos</Link>
             <Link to="#">
               <i className="fa-solid fa-bell"></i>
@@ -52,6 +53,7 @@ const Navbar = () => {
               <i className="fa-solid fa-comments"></i>
             </Link>
           </div>
+          
         </nav>
       </div>
     </>

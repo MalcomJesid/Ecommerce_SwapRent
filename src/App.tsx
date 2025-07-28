@@ -13,6 +13,7 @@ import Register from "./components/auth/Register";
 import Error404 from "./components/error/Error404";
 import { Modal } from "reactstrap";
 import { Toaster } from "sonner";
+import Profile from "./components/profile/Profile";
 
 const App = () => {
   return (
@@ -34,6 +35,8 @@ const App = () => {
           <Route path="exchange" element={<Exchange />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="modal" element={<Modal />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="modal" element={<Modal />} />
         </Route>
 

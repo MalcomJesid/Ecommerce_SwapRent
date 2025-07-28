@@ -1,0 +1,105 @@
+/* Profile.css */
+.body, .html {
+  background-color: #0e1e25; /* o #102b2d para un tono más similar al verde oscuro */
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #ffffff;
+}
+.profile-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background-color: #2c3e50;
+  padding: 2rem 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Main profile content */
+.main-profile {
+  flex: 1;
+  padding: 2rem;
+}
+
+.main-profile h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+/* Buttons row */
+.buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.update-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Profile section with user info cards */
+.profile-section {
+  background: linear-gradient(to right, #024d3b, #243f3f); /* Tonos verdes oscuros */
+  color: #ffffff; /* Color de texto blanco para contraste */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: flex-start;
+}
+
+
+.profile-section .card {
+  background-color: rgba(255, 255, 255, 0.1); /* semitransparente para integrarse al fondo */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+  flex: 1 1 250px;
+  min-width: 250px;
+  color: #ffffff;
+}
+
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+
+  .main-profile {
+    padding: 1rem;
+  }
+}
