@@ -4,13 +4,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 103vh;
     background: linear-gradient(to right, #004d40, #263238);
 }
 
 .register-box {
     width: 300px;
-    height: 580px;
+    height: 560px;
     padding: 20px;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.1);
@@ -32,9 +32,9 @@
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 8px;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     transition: all 0.3s ease;
 }
 
@@ -68,9 +68,11 @@
     color: white;
     padding: 5px;
 }
-.input-group i{
+
+.input-group i {
     margin-top: 8px;
 }
+
 .input-group input::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
@@ -140,4 +142,78 @@
 .google-icon {
     width: 18px;
     height: 18px;
+}
+
+/* Media Queries for responsiveness */
+
+/* Pantallas de 768px o menos (tabletas, móviles en modo vertical) */
+@media (max-width: 768px) {
+    .register-container {
+        height: auto;
+    }
+
+    .register-box {
+        width: 80%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .register-box h2 {
+        font-size: 20px;
+    }
+
+    .input-group {
+        padding: 8px;
+    }
+
+    .register-button-new {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .social-login {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .google-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Pantallas de 480px o menos (móviles en modo horizontal) */
+@media (max-width: 480px) {
+    .register-container {
+        height: 100vh;
+    }
+
+    .register-box {
+        width: 90%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .register-box h2 {
+        font-size: 18px;
+    }
+
+    .input-group {
+        padding: 8px;
+    }
+
+    .register-button-new {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .social-login {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .google-button {
+        width: 100%;
+        margin-top: 10px;
+    }
 }

@@ -27,8 +27,6 @@ export default function Login() {
     };
 
     
-
-    
   return (<>
 
     <div className="login-container">
@@ -46,7 +44,6 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 fill="none" viewBox="0 0 24 24" 
@@ -59,7 +56,6 @@ export default function Login() {
 
           </div>
           <div className="input-group">
-        
             <input
               type="password"
               placeholder="Contraseña"

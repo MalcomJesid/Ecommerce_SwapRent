@@ -26,10 +26,11 @@ const Content = () => {
         }
       }, [autoSlide, banners.length]);
     
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const plusSlides = (n: any) => {
         setAutoSlide(false);
         setSlideIndex((prevIndex) => {
-          let newIndex = prevIndex + n;
+          const newIndex = prevIndex + n;
           if (newIndex >= banners.length) return 0;
           if (newIndex < 0) return banners.length - 1;
           return newIndex;

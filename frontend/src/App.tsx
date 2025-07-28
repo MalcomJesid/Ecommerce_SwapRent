@@ -12,6 +12,7 @@ import Login from './components/auth/Login'
 import Register from "./components/auth/Register";
 import { Modal } from 'reactstrap'
 import { Toaster } from 'sonner'
+import Profile from './components/profile/Profile'
 
 
 const  App =() => {
@@ -31,10 +32,11 @@ const  App =() => {
       <Route  path ="login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="modal" element={<Modal />} />
-  
+      <Route path="profile" element={<Profile />} />
+      <Route path="*" element={<Error404 />} />
   </Routes>
-
   
+
     </>
   )
 }
