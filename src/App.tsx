@@ -14,6 +14,7 @@ import Error404 from "./components/error/Error404";
 import { Modal } from "reactstrap";
 import { Toaster } from "sonner";
 import Profile from "./components/profile/Profile";
+import Cart from "./components/cart/Cart";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="modal" element={<Modal />} />
           <Route path="profile" element={<Profile />} />
           <Route path="modal" element={<Modal />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
 
         {/* Ruta para error 404 */}

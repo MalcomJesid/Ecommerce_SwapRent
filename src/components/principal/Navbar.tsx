@@ -30,6 +30,9 @@ const Navbar = () => {
         <nav className="bottom-bar">
           <ul>
             <li>
+              <Link to="/">Inicio</Link>
+            </li>
+            <li>
               <Link to="category">Categorías</Link>
             </li>
             <li>
