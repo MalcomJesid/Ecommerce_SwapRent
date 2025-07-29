@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate
 import './Profile.css';
 import Update_user from './Update_user'; 
 import avatar from '../../assets/product/images.jpeg';
-
 
 interface Usuario {
   nombre: string;
@@ -16,6 +16,7 @@ interface Usuario {
 const Profile: React.FC = () => {
   const [user, setUser] = useState<Usuario | null>(null);
   const [mostrarActualizarUsuario, setMostrarActualizarUsuario] = useState(false);
+  const navigate = useNavigate(); // Hook para navegar entre rutas
 
   useEffect(() => {
     const userData: Usuario = {
@@ -34,7 +35,7 @@ const Profile: React.FC = () => {
   };
 
   const handleActualizarProductos = () => {
-    alert('Función para actualizar productos');
+    navigate('/create-product'); // Navega a la ruta /create-product
   };
 
   if (!user) return <p>Cargando perfil...</p>;
@@ -48,7 +49,6 @@ const Profile: React.FC = () => {
         </div>
         <ul className="sidebar-menu">
           <li>Mi Perfil</li>
-          <li>Mis Intercambios</li>
           <li>Mis Productos</li>
           <li>Configuración</li>
           <li>Cerrar sesión</li>
