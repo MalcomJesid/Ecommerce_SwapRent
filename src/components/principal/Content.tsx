@@ -125,6 +125,7 @@ const Content = () => {
                   Envío: <strong>{product.shipping}</strong>
                 </p>
               </div>
+              <button className="rentable-button">PRODUCTO RENTABLE</button>
             </div>
           ))}
         </div>

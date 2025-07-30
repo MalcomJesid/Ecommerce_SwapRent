@@ -59,3 +59,61 @@
 .rent-button:hover {
   background: #005f56;
 }
+.grid-products {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease;
+  position: relative;
+  padding: 10px; /* Espaciado interno */
+  min-height: 300px; /* Altura mínima para evitar superposición */
+}
+
+.grid-products:hover {
+  transform: scale(1.05);
+}
+
+.grid-products img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.product-info h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.product-info p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.product-info .price {
+  color: #00796b;
+  font-weight: bold;
+}
+
+.product-info .shipping {
+  color: #555;
+}
+
+.rentable-button {
+  margin-top: 15px; /* Espacio entre el botón y los elementos superiores */
+  padding: 10px 20px;
+  border: none;
+  background-color: #00796b;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative; /* Cambiado de absolute a relative */
+}
+
+.rentable-button:hover {
+  background-color: #005f56;
+}
