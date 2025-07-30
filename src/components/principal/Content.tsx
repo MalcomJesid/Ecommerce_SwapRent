@@ -115,7 +115,16 @@ const Content = () => {
               style={{ cursor: "pointer" }}
             >
               <img src={product.image} alt={product.name} />
-              <p className="product-label">PRODUCTO RENTABLE</p>
+              <div className="product-info">
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                <p className="price">
+                  Precio por día: <strong>${product.pricePerDay.toLocaleString()}</strong>
+                </p>
+                <p className="shipping">
+                  Envío: <strong>{product.shipping}</strong>
+                </p>
+              </div>
             </div>
           ))}
         </div>
