@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Update_user.css";
-import ConfirmDeleteModal from "../auth/ConfirmDeleteModal";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase"; // Importa la configuración de Firebase
 
 const Update_user = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,6 @@ const Update_user = () => {
     email: "",
     password: "",
   });
-  const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
 
   // Manejar cambios en los inputs
@@ -17,17 +17,26 @@ const Update_user = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Simular actualización de datos
-  const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
+  // Actualizar datos del usuario en Firebase
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Datos actualizados:", formData);
-    setMessage("✅ Datos actualizados correctamente.");
-  };
 
-  // Manejar eliminación del usuario
-  const handleDeleteUser = () => {
-    console.log("Usuario eliminado");
-    setIsOpen(false);
+    try {
+      // Referencia al documento del usuario en Firestore
+      const userDocRef = doc(db, "usuarios", formData.email); // Usa el email como ID del documento
+
+      // Actualiza los datos del usuario
+      await updateDoc(userDocRef, {
+        nombre: formData.name,
+        apellido: formData.apellido,
+        password: formData.password,
+      });
+
+      setMessage("✅ Datos actualizados correctamente.");
+    } catch (error) {
+      console.error("Error al actualizar los datos:", error);
+      setMessage("❌ Hubo un error al actualizar los datos.");
+    }
   };
 
   return (
@@ -45,6 +54,7 @@ const Update_user = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Nombre"
+              required
             />
           </div>
 
@@ -55,6 +65,7 @@ const Update_user = () => {
               value={formData.apellido}
               onChange={handleChange}
               placeholder="Apellido"
+              required
             />
           </div>
 
@@ -65,6 +76,7 @@ const Update_user = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Correo electrónico"
+              required
             />
           </div>
 
@@ -75,6 +87,7 @@ const Update_user = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Contraseña"
+              required
             />
           </div>
 
@@ -84,14 +97,6 @@ const Update_user = () => {
             </button>
           </div>
         </form>
-
-        {/* Botón para abrir el Modal de confirmación */}
-        <div className="Olcontraseña">
-          <button onClick={() => setIsOpen(true)}>Eliminar Usuario</button>
-        </div>
-
-        {/* Modal de confirmación */}
-        {isOpen && <ConfirmDeleteModal onClose={() => setIsOpen(false)} onConfirm={handleDeleteUser} />}
       </div>
     </div>
   );

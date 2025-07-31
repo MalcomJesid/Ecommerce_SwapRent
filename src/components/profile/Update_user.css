@@ -30,9 +30,13 @@
 
 /* Mensaje de actualización */
 .message {
-    color: #00e676;
-    font-size: 14px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: green;
+}
+
+.message.error {
+  color: red;
 }
 
 /* Estilos de los inputs */
