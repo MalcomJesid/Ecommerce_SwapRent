@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./CreateProduct.css";
 import { db } from "../../firebase/firebase"; // Importa la configuración de Firebase
 import { collection, addDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth"; // Importa Firebase Auth
 
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
@@ -30,6 +31,14 @@ const CreateProduct = () => {
     e.preventDefault();
 
     try {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
+
+      if (!currentUser) {
+        alert("No hay un usuario logueado.");
+        return;
+      }
+
       // Genera el atributo `image` basado en la categoría seleccionada
       const image = `/src/assets/product/${formData.category.toLowerCase()}.png`;
 
@@ -39,9 +48,13 @@ const CreateProduct = () => {
         id: Date.now().toString(), // Genera un ID único para el producto
       };
 
-      // Guarda el producto en Firestore
+      // Guarda el producto en la colección global `productos`
       const productsRef = collection(db, "productos");
       await addDoc(productsRef, newProduct);
+
+      // Guarda el producto en la subcolección `productos` dentro del usuario
+      const userProductsRef = collection(db, `usuarios/${currentUser.email}/productos`);
+      await addDoc(userProductsRef, newProduct);
 
       alert("Producto creado exitosamente");
       setFormData({
