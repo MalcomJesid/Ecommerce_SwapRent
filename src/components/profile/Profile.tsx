@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importa el hook useNavigate
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import Update_user from "./Update_user";
-import avatar from "../../assets/product/images.jpeg";
+import avatarPlaceholder from "../../assets/product/images.jpeg";
+import { getAuth } from "firebase/auth"; // Importa Firebase Auth
+import { doc, getDoc, setDoc } from "firebase/firestore"; // Importa Firestore
+import { db } from "../../firebase/firebase"; // Importa la configuración de Firebase
 
 interface Usuario {
   nombre: string;
@@ -24,49 +27,73 @@ interface Producto {
 
 const Profile: React.FC = () => {
   const [user, setUser] = useState<Usuario | null>(null);
-  const [mostrarActualizarUsuario, setMostrarActualizarUsuario] = useState(false);
-  const [productos, setProductos] = useState<Producto[]>([]); // Estado para almacenar los productos del usuario
-  const navigate = useNavigate(); // Hook para navegar entre rutas
+  const [productos, setProductos] = useState<Producto[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const userData: Usuario = {
-      nombre: "Sandra Torres",
-      email: "sandraswaprent@gmail.com",
-      avatar: avatar,
-      intercambios: 14,
-      miembroDesde: "2025",
-      tiempoMiembro: "1 año 4 meses",
-    };
-    setUser(userData);
+    const fetchUserData = async () => {
+      try {
+        const auth = getAuth();
+        const currentUser = auth.currentUser;
 
-    // Simulación de productos agregados por el usuario
-    const userProducts: Producto[] = [
-      {
-        id: "1",
-        name: "Mesa de lujo + 6 sillas",
-        description: "Mesa de lujo con 6 sillas para reuniones especiales.",
-        pricePerDay: 65500,
-        shipping: "Envío gratis",
-        image: "/src/assets/product/mesas-con6sillas.png",
-      },
-      {
-        id: "2",
-        name: "Vestido de gala",
-        description: "Vestido elegante para eventos especiales.",
-        pricePerDay: 45000,
-        shipping: "Envío gratis",
-        image: "/src/assets/product/vestido.png",
-      },
-    ];
-    setProductos(userProducts);
+        if (currentUser) {
+          console.log("Correo del usuario logueado:", currentUser.email); // Depuración
+
+          const userDocRef = doc(db, "usuarios", currentUser.email!);
+          let userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            setUser({
+              nombre: userDoc.data().nombre,
+              email: userDoc.data().email,
+              avatar: userDoc.data().avatar || avatarPlaceholder,
+              intercambios: userDoc.data().intercambios,
+              miembroDesde: userDoc.data().miembroDesde,
+              tiempoMiembro: userDoc.data().tiempoMiembro,
+            });
+
+            setProductos(userDoc.data().productos || []);
+          } else {
+            console.log("El documento no existe. Creando uno nuevo...");
+            await setDoc(userDocRef, {
+              nombre: currentUser.displayName || "Usuario",
+              email: currentUser.email,
+              avatar: avatarPlaceholder,
+              intercambios: 0,
+              miembroDesde: new Date().toISOString(),
+              tiempoMiembro: "0 días",
+              productos: [],
+            });
+            console.log("Documento creado exitosamente.");
+
+            // Vuelve a consultar los datos del usuario después de crear el documento
+            userDoc = await getDoc(userDocRef);
+            if (userDoc.exists()) {
+              setUser({
+                nombre: userDoc.data().nombre,
+                email: userDoc.data().email,
+                avatar: userDoc.data().avatar || avatarPlaceholder,
+                intercambios: userDoc.data().intercambios,
+                miembroDesde: userDoc.data().miembroDesde,
+                tiempoMiembro: userDoc.data().tiempoMiembro,
+              });
+
+              setProductos(userDoc.data().productos || []);
+            }
+          }
+        } else {
+          console.error("No hay un usuario logueado.");
+        }
+      } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+      }
+    };
+
+    fetchUserData();
   }, []);
 
-  const handleActualizarUsuario = () => {
-    setMostrarActualizarUsuario(!mostrarActualizarUsuario);
-  };
-
   const handleActualizarProductos = () => {
-    navigate("/create-product"); // Navega a la ruta /create-product
+    navigate("/create-product");
   };
 
   if (!user) return <p>Cargando perfil...</p>;
@@ -75,7 +102,13 @@ const Profile: React.FC = () => {
     <div className="profile-container">
       <aside className="sidebar">
         <div className="sidebar-avatar">
-          {user.avatar && <img src={user.avatar} alt="Avatar del usuario" className="avatar" />}
+          {user.avatar && (
+            <img
+              src={user.avatar}
+              alt="Avatar del usuario"
+              className="avatar"
+            />
+          )}
           <h2>{user.nombre}</h2>
         </div>
         <ul className="sidebar-menu">
@@ -88,18 +121,15 @@ const Profile: React.FC = () => {
 
       <main className="main-profile">
         <h1>Mi cuenta</h1>
-
         <div className="buttons-row">
-          <button className="update-btn" onClick={handleActualizarUsuario}>
-            {mostrarActualizarUsuario ? "Cerrar formulario" : "Actualizar Información del Usuario"}
+          <button className="update-btn">
+            Actualizar información del usuario
           </button>
+
           <button className="update-btn" onClick={handleActualizarProductos}>
             Crear Productos
           </button>
         </div>
-
-        {/* Formulario para actualizar usuario */}
-        {mostrarActualizarUsuario && <Update_user />}
 
         <section className="profile-section">
           <div className="card">
@@ -119,20 +149,29 @@ const Profile: React.FC = () => {
             <p>{user.tiempoMiembro}</p>
           </div>
         </section>
-<section className="products-section">
-  <h2>Mis Productos</h2>
-  <div className="products-list">
-    {productos.map((producto) => (
-      <div key={producto.id} className="product-item">
-        <img src={producto.image} alt={producto.name} className="product-image" />
-        <div className="product-details">
-          <h3>{producto.name}</h3>
-          <p className="price">${producto.pricePerDay.toLocaleString()} / día</p>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+
+        
+
+        <section className="products-section">
+          <h2>Mis Productos</h2>
+          <div className="products-list">
+            {productos.map((producto) => (
+              <div key={producto.id} className="product-item">
+                <img
+                  src={producto.image}
+                  alt={producto.name}
+                  className="product-image"
+                />
+                <div className="product-details">
+                  <h3>{producto.name}</h3>
+                  <p className="price">
+                    ${producto.pricePerDay.toLocaleString()} / día
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );
