@@ -1,23 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getAuth } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 import "./Cart.css";
 
-const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: "1",
-      name: "Mesa de lujo + 6 sillas",
-      pricePerDay: 65500,
-      quantity: 1,
-      image: "/src/assets/product/mesas-con6sillas.png",
-    },
-    {
-      id: "2",
-      name: "Vestido de gala",
-      pricePerDay: 45000,
-      quantity: 2,
-      image: "/src/assets/product/vestido.png",
-    },
-  ]);
+interface Producto {
+  id: string;
+  name: string;
+  description: string;
+  pricePerDay: number;
+  shipping: string;
+  image: string;
+}
+
+const Cart: React.FC = () => {
+  const [cartItems, setCartItems] = useState<Producto[]>([]);
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const auth = getAuth();
+        const currentUser = auth.currentUser;
+
+        if (currentUser) {
+          const cartRef = collection(db, `usuarios/${currentUser.email}/cart`);
+          const cartSnapshot = await getDocs(cartRef);
+          const items = cartSnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          })) as Producto[];
+
+          setCartItems(items);
+        } else {
+          console.error("No hay un usuario logueado.");
+        }
+      } catch (error) {
+        console.error("Error al obtener los productos del carrito:", error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
 
   const handleRemoveItem = (id: string) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -33,14 +56,14 @@ const Cart = () => {
 
   const calculateTotal = () => {
     return cartItems.reduce(
-      (total, item) => total + item.pricePerDay * item.quantity,
+      (total, item) => total + item.pricePerDay ,
       0
     );
   };
 
   return (
     <div className="cart-container">
-      <h1>Carrito</h1>
+      <h1>Mi Carrito</h1>
       {cartItems.length === 0 ? (
         <p>Tu carrito está vacío.</p>
       ) : (
@@ -50,20 +73,18 @@ const Cart = () => {
               <img src={item.image} alt={item.name} className="cart-item-image" />
               <div className="cart-item-details">
                 <h2>{item.name}</h2>
-                <p>Precio por día: ${item.pricePerDay.toLocaleString()}</p>
+                <p>{item.description}</p>
+                <p className="price">${item.pricePerDay.toLocaleString()} / día</p>
+                <p className="shipping">Envío: {item.shipping}</p>
                 <div className="cart-item-quantity">
                   <button
-                    onClick={() =>
-                      handleQuantityChange(item.id, item.quantity - 1)
-                    }
+                    
                   >
                     -
                   </button>
-                  <span>{item.quantity}</span>
+                  <span></span>
                   <button
-                    onClick={() =>
-                      handleQuantityChange(item.id, item.quantity + 1)
-                    }
+                    
                   >
                     +
                   </button>

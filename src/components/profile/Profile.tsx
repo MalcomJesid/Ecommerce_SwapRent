@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import avatarPlaceholder from "../../assets/product/images.jpeg";
-import { getAuth, signOut } from "firebase/auth"; // Importa Firebase Auth y signOut
-import { doc, getDoc, setDoc } from "firebase/firestore"; // Importa Firestore
-import { db } from "../../firebase/firebase"; // Importa la configuración de Firebase
+import { getAuth, signOut } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 interface Usuario {
   nombre: string;
@@ -13,7 +13,7 @@ interface Usuario {
   intercambios: number;
   miembroDesde: string;
   tiempoMiembro: string;
-} 
+}
 
 interface Producto {
   id: string;
@@ -36,7 +36,7 @@ const Profile: React.FC = () => {
         const currentUser = auth.currentUser;
 
         if (currentUser) {
-          console.log("Correo del usuario logueado:", currentUser.email); // Depuración
+          console.log("Correo del usuario logueado:", currentUser.email);
 
           const userDocRef = doc(db, "usuarios", currentUser.email!);
           let userDoc = await getDoc(userDocRef);
@@ -80,12 +80,16 @@ const Profile: React.FC = () => {
     navigate("/create-product");
   };
 
+  const handleVerCarrito = () => {
+    navigate("/cart");
+  };
+
   const handleCerrarSesion = async () => {
     try {
       const auth = getAuth();
       await signOut(auth);
       console.log("Sesión cerrada exitosamente.");
-      navigate("/login"); // Redirige al usuario a la página de inicio de sesión
+      navigate("/login");
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }
@@ -98,11 +102,7 @@ const Profile: React.FC = () => {
       <aside className="sidebar">
         <div className="sidebar-avatar">
           {user.avatar && (
-            <img
-              src={user.avatar}
-              alt="Avatar del usuario"
-              className="avatar"
-            />
+            <img src={user.avatar} alt="Avatar del usuario" className="avatar" />
           )}
           <h2>{user.nombre}</h2>
         </div>
@@ -122,6 +122,9 @@ const Profile: React.FC = () => {
 
           <button className="update-btn" onClick={handleActualizarProductos}>
             Crear Productos
+          </button>
+          <button className="update-btn" onClick={handleVerCarrito}>
+            Carrito
           </button>
         </div>
 
