@@ -15,7 +15,7 @@ const Navbar = () => {
           <div className="search-bar">
             <input
               type="text"
-              placeholder="Buscar productos, servicios de intercambio y más..."
+              placeholder="Buscar productos, servicios y más..."
             />
             <button type="button">
               <i className="fa-solid fa-magnifying-glass"></i>
@@ -41,9 +41,7 @@ const Navbar = () => {
             <li>
               <Link to="rent">Rentar</Link>
             </li>
-            <li>
-              <Link to="exchange">Intercambiar</Link>
-            </li>
+            
           </ul>
           <div className="user-menu">
             <Link to="profile">Mi Cuenta</Link>
