@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
-import Update_user from "./Update_user";
 import avatarPlaceholder from "../../assets/product/images.jpeg";
-import { getAuth } from "firebase/auth"; // Importa Firebase Auth
+import { getAuth, signOut } from "firebase/auth"; // Importa Firebase Auth y signOut
 import { doc, getDoc, setDoc } from "firebase/firestore"; // Importa Firestore
 import { db } from "../../firebase/firebase"; // Importa la configuración de Firebase
 
@@ -14,7 +13,7 @@ interface Usuario {
   intercambios: number;
   miembroDesde: string;
   tiempoMiembro: string;
-}
+} 
 
 interface Producto {
   id: string;
@@ -65,21 +64,6 @@ const Profile: React.FC = () => {
               productos: [],
             });
             console.log("Documento creado exitosamente.");
-
-            // Vuelve a consultar los datos del usuario después de crear el documento
-            userDoc = await getDoc(userDocRef);
-            if (userDoc.exists()) {
-              setUser({
-                nombre: userDoc.data().nombre,
-                email: userDoc.data().email,
-                avatar: userDoc.data().avatar || avatarPlaceholder,
-                intercambios: userDoc.data().intercambios,
-                miembroDesde: userDoc.data().miembroDesde,
-                tiempoMiembro: userDoc.data().tiempoMiembro,
-              });
-
-              setProductos(userDoc.data().productos || []);
-            }
           }
         } else {
           console.error("No hay un usuario logueado.");
@@ -94,6 +78,17 @@ const Profile: React.FC = () => {
 
   const handleActualizarProductos = () => {
     navigate("/create-product");
+  };
+
+  const handleCerrarSesion = async () => {
+    try {
+      const auth = getAuth();
+      await signOut(auth);
+      console.log("Sesión cerrada exitosamente.");
+      navigate("/login"); // Redirige al usuario a la página de inicio de sesión
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
   };
 
   if (!user) return <p>Cargando perfil...</p>;
@@ -112,10 +107,9 @@ const Profile: React.FC = () => {
           <h2>{user.nombre}</h2>
         </div>
         <ul className="sidebar-menu">
-          <li>Mi Perfil</li>
-          <li>Mis Productos</li>
-          <li>Configuración</li>
-          <li>Cerrar sesión</li>
+          <li onClick={() => navigate("/profile")}>Mi Perfil</li>
+          <li onClick={() => navigate("/my-products")}>Mis Productos</li>
+          <li onClick={handleCerrarSesion}>Cerrar sesión</li>
         </ul>
       </aside>
 
@@ -149,8 +143,6 @@ const Profile: React.FC = () => {
             <p>{user.tiempoMiembro}</p>
           </div>
         </section>
-
-        
 
         <section className="products-section">
           <h2>Mis Productos</h2>

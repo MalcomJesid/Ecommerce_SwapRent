@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore"; // Importa addDoc
+import { getAuth } from "firebase/auth"; // Importa getAuth
 import { db } from "../../firebase/firebase";
 import "./ProductDetail.css";
 
@@ -8,6 +9,7 @@ const ProductDetail = () => {
   const { productId } = useParams(); // Obtiene el ID del producto desde la URL
   const [product, setProduct] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -41,6 +43,26 @@ const ProductDetail = () => {
     fetchProduct();
   }, [productId]);
 
+  const handleAgregarAlCarrito = async () => {
+    try {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
+
+      if (!currentUser) {
+        alert("No hay un usuario logueado.");
+        return;
+      }
+
+      const cartRef = collection(db, `usuarios/${currentUser.email}/cart`);
+      await addDoc(cartRef, product);
+
+      alert("Producto agregado al carrito.");
+    } catch (error) {
+      console.error("Error al agregar el producto al carrito:", error);
+      alert("Hubo un error al agregar el producto al carrito.");
+    }
+  };
+
   if (error) {
     return <p>{error}</p>;
   }
@@ -59,6 +81,9 @@ const ProductDetail = () => {
           Precio por día: <strong>${product.pricePerDay?.toLocaleString()}</strong>
         </p>
         <p>Envío: {product.shipping || "Sin información de envío"}</p>
+        <button className="add-to-cart-btn" onClick={handleAgregarAlCarrito}>
+          Agregar al carrito
+        </button>
       </div>
     </div>
   );
