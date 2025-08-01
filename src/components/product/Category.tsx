@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { db } from "../../firebase/firebase";
 import "./Category.css";
 
@@ -41,6 +42,26 @@ const Category: React.FC = () => {
     fetchProductsByCategory();
   }, [selectedCategory]);
 
+  const handleAgregarAlCarrito = async (producto: Producto) => {
+    try {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
+
+      if (!currentUser) {
+        alert("No hay un usuario logueado.");
+        return;
+      }
+
+      const cartRef = collection(db, `usuarios/${currentUser.email}/cart`);
+      await addDoc(cartRef, producto);
+
+      alert("Producto agregado al carrito.");
+    } catch (error) {
+      console.error("Error al agregar el producto al carrito:", error);
+      alert("Hubo un error al agregar el producto al carrito.");
+    }
+  };
+
   return (
     <div className="category-container">
       <h1>Filtrar por Categoría</h1>
@@ -68,6 +89,12 @@ const Category: React.FC = () => {
                 <p>{producto.description}</p>
                 <p className="price">${producto.pricePerDay.toLocaleString()} / día</p>
                 <p className="shipping">Envío: {producto.shipping}</p>
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => handleAgregarAlCarrito(producto)}
+                >
+                  Agregar al carrito
+                </button>
               </div>
             </div>
           ))

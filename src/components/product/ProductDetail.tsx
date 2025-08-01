@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import  { useEffect, useState } from "react";
+import {  useParams } from "react-router-dom";
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore"; // Importa addDoc
 import { getAuth } from "firebase/auth"; // Importa getAuth
 import { db } from "../../firebase/firebase";
@@ -9,7 +9,7 @@ const ProductDetail = () => {
   const { productId } = useParams(); // Obtiene el ID del producto desde la URL
   const [product, setProduct] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchProduct = async () => {

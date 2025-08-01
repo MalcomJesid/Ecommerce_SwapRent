@@ -46,13 +46,7 @@ const Cart: React.FC = () => {
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
-  const handleQuantityChange = (id: string, quantity: number) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
-      )
-    );
-  };
+  
 
   const calculateTotal = () => {
     return cartItems.reduce(

@@ -6,7 +6,6 @@ import ProductDetail from "./components/product/ProductDetail";
 import Category from "./components/product/Category";
 import Offer from "./components/product/Offer";
 import Rent from "./components/product/Rent";
-import Exchange from "./components/product/Exchange";
 import History from "./components/chat/History";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -34,7 +33,6 @@ const App = () => {
           <Route path="offer" element={<Offer />} />
           <Route path="history" element={<History />} />
           <Route path="rent" element={<Rent />} />
-          <Route path="exchange" element={<Exchange />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="modal" element={<Modal />} />
